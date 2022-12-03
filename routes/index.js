@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
+const insert = require('./insert');
 
 mongoose.connect('mongodb+srv://quang123:quang123@cluster0.umb30uq.mongodb.net/');
 
@@ -69,6 +69,6 @@ router.get('/getImg/:page', (req, res, next) => {
         });
 });
 
-
+insert(router);
 
 module.exports = router;
