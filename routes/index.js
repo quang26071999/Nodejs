@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-
 const multer = require("multer");
 const sizeOf = require("image-size");
 const sharp = require("sharp");
