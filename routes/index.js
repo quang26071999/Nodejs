@@ -13,6 +13,7 @@ const Image = new mongoose.Schema({
 })
 
 const Images = mongoose.model('Images',Image);
+
 router.get('/', (req, res, next) => {
     let perPage = 6; // số lượng sản phẩm xuất hiện trên 1 page
     let page = req.params.page || 1 ;
@@ -68,6 +69,6 @@ router.get('/getImg/:page', (req, res, next) => {
         });
 });
 
-insert(router);
+
 
 module.exports = router;
