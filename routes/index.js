@@ -14,7 +14,23 @@ const Image = new mongoose.Schema({
 
 const Images = mongoose.model('Images',Image);
 
+router.get('/', (req, res, next) => {
+    let perPage = 6; // số lượng sản phẩm xuất hiện trên 1 page
+    let page = req.params.page || 1 ;
 
+    Images
+        .find() // find tất cả các data
+        .skip((perPage * page) - perPage) // Trong page đầu tiên sẽ bỏ qua giá trị là 0
+        .limit(perPage)
+        .exec((err, products) => {
+            Images.countDocuments((err) => { // đếm để tính có bao nhiêu trang
+                if (err) return next(err);
+                res.render('index', {
+                    products: products, // sản phẩm trên một page
+                });
+            });
+        });
+});
 
 router.get('/image/:page', (req, res, next) => {
     let perPage = 6; // số lượng sản phẩm xuất hiện trên 1 page
