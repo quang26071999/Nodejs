@@ -5,6 +5,14 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://quang123:quang123@cluster0.umb30uq.mongodb.net/');
 
+const Image = new mongoose.Schema({
+    title: String,
+    description : String,
+    img: String,
+    imgSmall: String,
+})
+
+const Images = mongoose.model('Images',Image);
 router.get('/', (req, res, next) => {
     let perPage = 6; // số lượng sản phẩm xuất hiện trên 1 page
     let page = req.params.page || 1 ;
